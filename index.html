@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Facebook More-private like button</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+  </head>
+  <body>
+    <div id="fb-root"></div>
+    <div class="fb-like" data-href="http://haptic-data.com" data-layout="button_count" data-send="false" data-width="450" data-show-faces="true"></div>
+    <script>
+      var tempBadge = '<a class="hidden-fb-like" href="#" onclick="return false;" title="Click to Load Facebook Like Button"><img src="img/blurred_fb_like.gif" width="51" height="20" alt="Hidden Facebook Like Button"></a>';
+      //'<div class="temp-fb-badge" style="font-size:10px;width:51px;height:20px;background-color:#ffffff;">show like button</div>';
+        
+      $('.fb-like')
+      .each(function(i,val){
+        var $this = $(this),
+            width = $this.attr('data-width'),
+            height = 20;
+        $this.css({
+          width: width, 
+          height: height,
+        })
+        .append(tempBadge);
+      });
+
+      $('.hidden-fb-like').click(function(){
+        $(this).remove();
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'))
+      });
+    </script>
+  </body>
+</html>
+
